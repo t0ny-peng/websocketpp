@@ -44,7 +44,7 @@ template <typename config>
 class server : public endpoint<connection<config>,config> {
 public:
     /// Type of this endpoint
-    typedef server<config> type;
+    typedef server type;
 
     /// Type of the endpoint concurrency component
     typedef typename config::concurrency_type concurrency_type;
@@ -72,23 +72,23 @@ public:
     }
 
     /// Destructor
-    ~server<config>() {}
+    ~server() {}
 
 #ifdef _WEBSOCKETPP_DEFAULT_DELETE_FUNCTIONS_
     // no copy constructor because endpoints are not copyable
-    server<config>(server<config> &) = delete;
+    server(server &) = delete;
 
     // no copy assignment operator because endpoints are not copyable
-    server<config> & operator=(server<config> const &) = delete;
+    server & operator=(server const &) = delete;
 #endif // _WEBSOCKETPP_DEFAULT_DELETE_FUNCTIONS_
 
 #ifdef _WEBSOCKETPP_MOVE_SEMANTICS_
     /// Move constructor
-    server<config>(server<config> && o) : endpoint<connection<config>,config>(std::move(o)) {}
+    server(server && o) : endpoint<connection<config>,config>(std::move(o)) {}
 
 #ifdef _WEBSOCKETPP_DEFAULT_DELETE_FUNCTIONS_
     // no move assignment operator because of const member variables
-    server<config> & operator=(server<config> &&) = delete;
+    server & operator=(server &&) = delete;
 #endif // _WEBSOCKETPP_DEFAULT_DELETE_FUNCTIONS_
 
 #endif // _WEBSOCKETPP_MOVE_SEMANTICS_
